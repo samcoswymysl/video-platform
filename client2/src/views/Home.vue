@@ -1,5 +1,6 @@
 <template>
 <div class="homeWrapper">
+
   <NavBar
   @getSection="section"
   />
@@ -14,7 +15,6 @@
       :section="sectionName"
       />
     </div>
-
   </div>
 
 </div>
@@ -34,6 +34,7 @@ export default {
     return {
       films: [],
       sectionName: '',
+      info: '',
     };
   },
   computed: {
@@ -44,9 +45,19 @@ export default {
   methods: {
     async section(name) {
       this.sectionName = name;
-      const res = await fetch(`http://localhost:5000/home/section/${name}`);
-      this.films = await res.json();
-      console.log(this.films);
+      const res = await fetch(`http://localhost:5000/home/section/${name}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+      });
+      console.log('dsasdsadsadasdasd', res.status);
+
+      if (res.status === 200) {
+        console.log(res);
+        this.films = await res.json();
+      }
     },
   },
 

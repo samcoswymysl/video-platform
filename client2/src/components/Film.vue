@@ -33,6 +33,7 @@ export default {
 .film{
   width: 50vw;
   height: 50vh;
+  border-radius: 30px;
 }
 p{
   width: 100%;

@@ -34,6 +34,7 @@
       type="file"
       ref="film"
       @change="onChange"
+      class="file"
     >
   </label>
   <button>SendFile</button>
@@ -61,9 +62,7 @@ export default {
     onChange() {
       // eslint-disable-next-line prefer-destructuring
       this.film = this.$refs.film.files[0];
-      console.log(this.$refs.film.files[0]);
     },
-
     async sendFile() {
       this.errArr.length = 0;
       this.validateData();
@@ -75,15 +74,12 @@ export default {
       formData.append('film', this.film);
       const res = await fetch(`http://localhost:5000/home/${section}/${this.numberFilm}/${this.filmName}`, {
         method: 'POST',
-        headers: {
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-          // 'Content-Type': 'multipart/form-data',
-        },
+        credentials: 'include',
         body: formData,
       });
-      // console.log(res);
-      const x = await res.json();
-      console.log(x);
+
+      await res.json();
+      this.$router.go();
     },
 
     validateData() {
@@ -110,10 +106,6 @@ export default {
   align-items: center;
   padding: 10px;
 }
-button{
-  width: 200px;
-  height: 20px;
-}
 form{
   display: flex;
   flex-direction: column;
@@ -123,6 +115,18 @@ form{
 
 label{
   padding: 5px;
+}
+
+.file{
+  width: 300px;
+}
+
+#checkbox{
+  width: 3vw;
+  background-color: #9cd98d;
+  border: solid 2px #ef1515;
+  border-radius: 10px;
+  margin: 10px;
 }
 
 </style>

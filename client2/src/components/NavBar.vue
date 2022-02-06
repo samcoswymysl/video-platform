@@ -21,7 +21,13 @@ export default {
   },
 
   async created() {
-    const res = await fetch('http://localhost:5000/home');
+    const res = await fetch('http://localhost:5000/home', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
     this.courses = await res.json();
     this.$store.commit('setSection', { section: this.courses });
   },

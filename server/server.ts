@@ -94,10 +94,11 @@ app.post('/x', (req: Request, res: Response)=> {
     console.log(req.body);
     res.json({xxx: 'xxxx'})
 })
-app.use('/login' ,passport.authenticate('login', { session: false, failWithError: true }), loginRouter);
+app.use('/login' ,passport.authenticate('login',
+    { session: false, failWithError: true }), loginRouter);
 app.use('/register' , registerRouter)
-app.use('/home', homeRouter)
-app.use('/admin', adminRouter)
+app.use('/home',passport.authenticate('userAccess', { session: false, failWithError: true }), homeRouter)
+app.use('/admin',passport.authenticate('adminAccess', { session: false, failWithError: true }), adminRouter)
 
 app.use(handleError);
 

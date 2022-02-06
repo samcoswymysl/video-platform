@@ -75,12 +75,12 @@ const verifyAdmin = async (payload: Payload, done: Done) => {
 
     if (!user) throw new Error('User not found');
 
-    const keyMatch = await compare(`$${user.email}`, payload.publicKey);
+    const keyMatch = await compare(`${user.email}`, payload.publicKey);
 
     if (!keyMatch) throw new Error('Wrong public key');
 
     if (user.role !== UserRole.admin){
-      throw new Error('You not Admin')
+      throw new Error('You not Admin2222222222')
     }
 
     done(null, user);

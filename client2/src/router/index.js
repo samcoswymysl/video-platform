@@ -26,6 +26,11 @@ const routes = [
     name: 'Upload',
     component: () => import(/* webpackChunkName: "about" */ '../views/Upload.vue'),
   },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Admin.vue'),
+  },
 ];
 
 const router = new VueRouter({

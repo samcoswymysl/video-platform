@@ -2,10 +2,12 @@
   <div id="app">
 
     <div id="nav">
-      <router-link to="/" v-if="!loginStatus">Home</router-link>
-      <router-link to="/login" v-if="!loginStatus">Login</router-link>
-      <router-link to="/register"  v-if="!loginStatus">Register</router-link>
-      <router-link to="/upload"  v-if="!loginStatus">Upload</router-link>
+      <button v-if="loginStatus"> <router-link to="/">Home</router-link></button>
+      <button  v-if="!loginStatus"><router-link to="/login">Login</router-link></button>
+      <button v-if="!loginStatus"><router-link to="/register">Register</router-link></button>
+      <button v-if="loginStatus"><router-link to="/upload" >Upload</router-link></button>
+      <button v-if="loginStatus"><router-link to="/admin"  >Admin</router-link></button>
+
     </div>
     <router-view/>
   </div>
@@ -43,5 +45,46 @@ export default {
     },
   },
 };
-
 </script>
+<style>
+body{
+  background-color: #366b4d;
+}
+#nav {
+  background-color: #000
+}
+button{
+  width: 15vw;
+  height: 5vh;
+  font-size: 16px;
+  background-color: #349b19;
+  border: solid 2px #ef1515;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+input {
+  width: 15vw;
+  height: 5vh;
+  font-size: 16px;
+  background-color: #9cd98d;
+  border: solid 2px #ef1515;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+label {
+  font-size: 20px;
+}
+
+select{
+  width: 15vw;
+  height: 5vh;
+  font-size: 16px;
+  background-color: #9cd98d;
+  border: solid 2px #ef1515;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+</style>

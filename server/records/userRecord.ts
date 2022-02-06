@@ -68,7 +68,7 @@ export class UserRecord {
         return this.id;
     }
     async updateUserData() {
-        const result = await pool.execute('UPDATE `users` SET   `email` = :email, `password` = :password ,`publicKey` = :publicKey , `role`:role WHERE  `id`= :id', {
+        const result = await pool.execute('UPDATE  `users` SET   `email` = :email, `password` = :password ,`publicKey` = :publicKey , `role` = :role WHERE  `id`= :id',{
             email: this.email,
             password: this.password,
             publicKey: this.publicKey,
@@ -77,11 +77,9 @@ export class UserRecord {
         });
     }
 
-    async deleteUser(id: string){
-        if(id){
+    async deleteUser(){
             await pool.execute('DELETE FROM `users` WHERE id=:id', {
                 id: this.id
             })
-        }
     }
 }
